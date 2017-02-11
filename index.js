@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const pify = require('pify');
@@ -11,30 +9,20 @@ const stat = pify(fs.stat);
 
 const childrenDirs = (dirPath) => {
     const cwd = path.resolve(dirPath || process.cwd());
+
     return readdir(cwd)
         .then((fileNames) => {
-            return fileNames.map((fileName) => {
-                return path.join(cwd, fileName);
-            });
-        })
-        .then((filePaths) => {
-            return Promise.all(filePaths.map((filePath) => {
+            return Promise.all(fileNames.map((fileName) => {
+                const filePath = path.join(cwd, fileName);
                 return stat(filePath).then((status) => {
-                    return {
-                        path        : filePath,
-                        isDirectory : status.isDirectory()
-                    };
+                    return status.isDirectory() ? filePath : null;
                 });
             }));
         })
-        .then((files) => {
-            return files
-                .filter((file) => {
-                    return file.isDirectory;
-                })
-                .map((file) => {
-                    return file.path;
-                });
+        .then((filePaths) => {
+            return filePaths.filter((filePath) => {
+                return filePath !== null;
+            });
         });
 };
 
