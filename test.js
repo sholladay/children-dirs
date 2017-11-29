@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import util from 'util';
 import test from 'ava';
-import pify from 'pify';
 import mkdirtemp from 'mkdirtemp';
 import childrenDirs from '.';
 
-const rmdir = pify(fs.rmdir);
+const rmdir = util.promisify(fs.rmdir);
 
 test.beforeEach(async (t) => {
     t.context.tempDir = await mkdirtemp();

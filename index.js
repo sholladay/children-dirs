@@ -2,28 +2,25 @@
 
 const fs = require('fs');
 const path = require('path');
-const pify = require('pify');
+const util = require('util');
 
-const readdir = pify(fs.readdir);
-const stat = pify(fs.stat);
+const readdir = util.promisify(fs.readdir);
+const stat = util.promisify(fs.stat);
 
-const childrenDirs = (dirPath) => {
+const childrenDirs = async (dirPath) => {
     const cwd = path.resolve(dirPath || process.cwd());
 
-    return readdir(cwd)
-        .then((fileNames) => {
-            return Promise.all(fileNames.map((fileName) => {
-                const filePath = path.join(cwd, fileName);
-                return stat(filePath).then((status) => {
-                    return status.isDirectory() ? filePath : null;
-                });
-            }));
-        })
-        .then((filePaths) => {
-            return filePaths.filter((filePath) => {
-                return filePath !== null;
-            });
-        });
+    const fileNames = await readdir(cwd);
+
+    const filePaths = await Promise.all(fileNames.map(async (fileName) => {
+        const filePath = path.join(cwd, fileName);
+        const status = await stat(filePath);
+        return status.isDirectory() ? filePath : null;
+    }));
+
+    return filePaths.filter((filePath) => {
+        return filePath !== null;
+    });
 };
 
 module.exports = childrenDirs;

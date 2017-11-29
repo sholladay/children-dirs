@@ -1,4 +1,4 @@
-# children-dirs [![Build status for children-dirs on Circle CI.](https://img.shields.io/circleci/project/sholladay/children-dirs/master.svg "Circle Build Status")](https://circleci.com/gh/sholladay/children-dirs "Children Dirs Builds")
+# children-dirs [![Build status for Children Dirs](https://img.shields.io/circleci/project/sholladay/children-dirs/master.svg "Build Status")](https://circleci.com/gh/sholladay/children-dirs "Builds")
 
 > Get paths of directories in a directory.
 
@@ -45,16 +45,16 @@ The directory to search.
 
 ## Contributing
 
-See our [contributing guidelines](https://github.com/sholladay/children-dirs/blob/master/CONTRIBUTING.md "The guidelines for participating in this project.") for more details.
+See our [contributing guidelines](https://github.com/sholladay/children-dirs/blob/master/CONTRIBUTING.md "Guidelines for participating in this project") for more details.
 
 1. [Fork it](https://github.com/sholladay/children-dirs/fork).
 2. Make a feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
-5. [Submit a pull request](https://github.com/sholladay/children-dirs/compare "Submit code to this project for review.").
+5. [Submit a pull request](https://github.com/sholladay/children-dirs/compare "Submit code to this project for review").
 
 ## License
 
-[MPL-2.0](https://github.com/sholladay/children-dirs/blob/master/LICENSE "The license for children-dirs.") © [Seth Holladay](http://seth-holladay.com "Author of children-dirs.")
+[MPL-2.0](https://github.com/sholladay/children-dirs/blob/master/LICENSE "License for children-dirs") © [Seth Holladay](https://seth-holladay.com "Author of children-dirs")
 
 Go make something, dang it.
